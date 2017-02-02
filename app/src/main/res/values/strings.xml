@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">TestApp</string>
+    <string name="testString">Teste string value</string>
+    <string name="title_activity_login">Sign in</string>
+
+</resources>
