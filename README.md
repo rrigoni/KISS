@@ -4,7 +4,7 @@ Simple dependency injection for Android.
 
 In your Application class init the modules:
 
-```java 
+```java
 public class App extends Application{
 
     @Override
@@ -13,7 +13,8 @@ public class App extends Application{
         KISS.with(new APIModule());
     }
 
-}`
+}
+```
 
 
 Your app module should look like this:
@@ -34,9 +35,8 @@ public class APIModule {
 
 
 }
-`
+```
 To prevent add the inject command in all activities, create a GenericActivity and extends it:
-
 
 
 ```java
@@ -49,8 +49,7 @@ public class GenericActivity extends AppCompatActivity {
     }
 
 }
-`
-
+```
 In your activities innject everything you need like this:
 
 ```java
@@ -91,4 +90,4 @@ public class MainActivity extends GenericActivity implements ItemFragment.OnList
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
 
     }
-}
+}```
