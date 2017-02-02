@@ -90,4 +90,53 @@ public class MainActivity extends GenericActivity implements ItemFragment.OnList
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
 
     }
-}```
+}
+```
+
+Wait, and fragments? 
+```java
+public class ItemFragment extends Fragment {
+
+    private OnListFragmentInteractionListener mListener;
+
+    public ItemFragment() {
+    }
+
+    public static ItemFragment newInstance(int columnCount) {
+        return new ItemFragment();
+    }
+    
+    @InjectView(R.id.list) private RecyclerView recyclerView;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+        KISS.inject(this, view);
+        Context context = view.getContext();
+        recyclerView.setLayoutManager(new GridLayoutManager(context, 1));
+        recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+        return view;
+    }
+
+    public interface OnListFragmentInteractionListener {
+        void onListFragmentInteraction(DummyItem item);
+    }
+}
+```
+Wait, and viewholders?
+```java
+public class ViewHolder extends RecyclerView.ViewHolder {
+
+        @InjectView(R.id.id2) public View mView;
+        @InjectView(R.id.content2) public TextView mIdView;
+        @InjectView(R.id.content2) public TextView mContentView;
+        public DummyItem mItem;
+
+        public ViewHolder(View view) {
+            super(view);
+            mView = view;
+            KISS.inject(this, view);
+        }
+        
+    }
+
